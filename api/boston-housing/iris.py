@@ -22,4 +22,4 @@ async def classify_flower(payload: FlowerData):
 
 @router.get("/")
 async def classify_flower():
-    return "api/v1/iris/"
+    return "api/v1/boston-housing/"

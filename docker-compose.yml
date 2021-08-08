@@ -10,6 +10,15 @@ services:
     networks:
       - nginx_network
 
+  boston_housing_app:
+    build: ./api/boston-housing
+    volumes:
+      - ./api/boston-housing:/usr/src/app
+    ports:
+      - 8000
+    networks:
+      - nginx_network
+
   nginx:
     image: nginx:1.13
     ports:
@@ -19,6 +28,7 @@ services:
       - ./nginx/logs/:/var/log/nginx/
     depends_on:
       - iris_app
+      - boston_housing_app
     networks:
       - nginx_network
 
