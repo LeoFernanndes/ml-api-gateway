@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  iris_app:
+    build: ./api/iris
+    volumes:
+      - ./api/iris:/usr/src/app
+    ports:
+      - 8000
+    networks:
+      - nginx_network
+
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs/:/var/log/nginx/
+    depends_on:
+      - iris_app
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    driver: bridge
