@@ -10,10 +10,10 @@ services:
     networks:
       - nginx_network
 
-  boston_housing_app:
-    build: ./api/boston-housing
+  titanic_app:
+    build: ./api/titanic
     volumes:
-      - ./api/boston-housing:/usr/src/app
+      - ./api/titanic:/usr/src/app
     ports:
       - 8000
     networks:
@@ -28,7 +28,7 @@ services:
       - ./nginx/logs/:/var/log/nginx/
     depends_on:
       - iris_app
-      - boston_housing_app
+      - titanic_app
     networks:
       - nginx_network
 
